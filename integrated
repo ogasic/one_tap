@@ -1,0 +1,38 @@
+#!/bin/bash
+echo "Checking dependencies..."
+MISSING=""
+
+if ! command -v cmake &> /dev/null; then
+    MISSING="$MISSING cmake"
+fi
+
+if ! command -v g++ &> /dev/null; then
+    MISSING="$MISSING build-essential"
+fi
+
+if ! pkg-config --exists glfw3; then
+    MISSING="$MISSING libglfw3-dev"
+fi
+
+if ! pkg-config --exists glew; then
+    MISSING="$MISSING libglew-dev"
+fi
+
+if [ -n "$MISSING" ]; then
+    echo "Missing dependencies:$MISSING"
+    echo "Install with: sudo apt install$MISSING"
+    exit 1
+fi
+echo "Building project..."
+mkdir -p build
+cd build
+cmake ..
+make
+
+if [ $? -eq 0 ]; then
+    echo "Build successful! Running with integrated GPU..."
+    ./app
+else
+    echo "Build failed!"
+    exit 1
+fi

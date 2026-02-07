@@ -1,0 +1,21 @@
+# OpenGL Project
+
+## Linux
+Install dependencies:
+```bash
+sudo apt install build-essential cmake libglfw3-dev libglew-dev
+```
+
+Build and run:
+```bash
+./run           # Uses dedicated GPU if available
+./integrated    # Forces integrated GPU
+```
+
+## Windows
+Install dependencies with vcpkg, then:
+```cmd
+mkdir build && cd build
+cmake ..
+cmake --build .
+```
