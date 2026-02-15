@@ -10,7 +10,9 @@ find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)
 
-add_executable(app src/main.cpp)
+add_executable(app src/main.cpp
+        src/mathutil.cpp
+        src/mathutil.h)
 set_target_properties(app PROPERTIES 
     VS_DEBUGGER_ENVIRONMENT "DRI_PRIME=1"
 )
